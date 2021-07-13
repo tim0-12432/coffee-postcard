@@ -1,5 +1,5 @@
 {
-    "extension": ["js", "coffee"],
+    "extension": ["coffee"],
     "package": "./package.json",
     "reporter": "spec",
     "require": "coffeescript/register"

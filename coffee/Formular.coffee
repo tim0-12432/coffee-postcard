@@ -1,64 +1,47 @@
 `
 import React, { Component } from 'react'
-import { Stack, ComboBox, SelectableOptionMenuItemType, TextField, PrimaryButton } from '@fluentui/react'
-import TabSystem from "./TabSystem"
+import Form from 'react-bootstrap/Form'
+import InputGroup from 'react-bootstrap/InputGroup'
+import Button from 'react-bootstrap/Button'
+import ControlledTabs from './ControlledTabs'
 `
 
-stack1Props =
-  tokens: { childrenGap: 15 }
-  styles: { root: { alignItems: "center" } }
-
-stack2Props =
-  tokens: { childrenGap: 15 }
-  styles: { root: { alignItems: "flex-end" } }
-
-dropdownStyles =
-    root:
-        width: 120
-textfieldStyles =
-    root:
-        width: 300
-
-dropdownControlledOptions = [
-  { key: 'method', text: 'HTTP Method', itemType: SelectableOptionMenuItemType.Header },
-  { key: 'get', text: 'GET' },
-  { key: 'post', text: 'POST' },
-  { key: 'put', text: 'PUT' },
-  { key: 'delete', text: 'DELETE' },
-  { key: 'options', text: 'OPTIONS' }
+options = [
+    "GET",
+    "POST",
+    "DELETE",
+    "PUT",
+    "PATCH",
+    "OPTION"
 ]
 
 class Formular extends Component
-    constructor: (props) ->
-        super props
-        @state =
-            selected: dropdownControlledOptions[1].key
-            label: ["Method", "URL"]
-            placeholder: ["Select an option", "https://localhost:3000"]
-        @handleChange = @handleChange.bind(@)
-
-    handleChange: (event) ->
-        @setState(selected: event.target.value)
-
     render: ->
-        <Stack {...stack1Props}>
-            <Stack horizontal {...stack2Props}>
-                <ComboBox
-                    label={ @state.label[0] }
-                    selectedKey={ @state.selected }
-                    placeholder={ @state.placeholder[0] }
-                    onChange={ @handleChange }
-                    options={ dropdownControlledOptions }
-                    styles={ dropdownStyles }
+        <form>
+            <InputGroup  className="mb-4">
+                <select className="form-select flex-grow-0 w-auto" >
+                    {
+                        <option
+                            key={option}
+                            value={option}
+                        >
+                            {option}
+                        </option> for option in options
+                    }
+                </select>
+                <Form.Control
+                    required
+                    type="url"
+                    placeholder="https://www.example.com"
                 />
-                <TextField
-                    label={ @state.label[1] }
-                    placeholder={ @state.placeholder[1] }
-                    styles={ textfieldStyles }
-                />
-                <PrimaryButton iconProps={ iconName: "Send" } text="Send" />
-            </Stack>
-            <TabSystem />
-        </Stack>
+                <Button
+                    variant="primary"
+                    type="submit"
+                >
+                    Send
+                </Button>
+            </InputGroup>
+            <ControlledTabs />
+        </form>
 
 export default Formular

@@ -1,16 +1,12 @@
 `
 import React, { Component } from 'react'
-import { ThemeProvider, initializeIcons } from "@fluentui/react"
-import Formular from "./Formular"
-import theme from "./theme"
+import Formular from './Formular'
 `
 
-initializeIcons()
-
 class App extends Component
-  render: ->
-    <ThemeProvider theme={ theme }>
-      <Formular />
-    </ThemeProvider>
+    render: ->
+        <div className="p-4">
+            <Formular />
+        </div>
 
 export default App
