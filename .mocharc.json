@@ -1,0 +1,6 @@
+{
+    "extension": ["js", "coffee"],
+    "package": "./package.json",
+    "reporter": "spec",
+    "require": "coffeescript/register"
+}
