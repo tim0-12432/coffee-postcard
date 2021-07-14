@@ -20,10 +20,18 @@ class ControlledTabs extends Component
             onSelect={(k) => @setState(selected: k)}
         >
             <Tab eventKey="params" title="Query Params">
-                <QueryTab />
+                <QueryTab
+                    params={@props.params}
+                    handleChangeParams={@props.handleChangeParams}
+                    handleRemoveParams={@props.handleRemoveParams}
+                />
             </Tab>
             <Tab eventKey="headers" title="Headers">
-                <HeadersTab />
+                <HeadersTab
+                    headers={@props.headers}
+                    handleChangeHeaders={@props.handleChangeHeaders}
+                    handleRemoveHeaders={@props.handleRemoveHeaders}
+                />
             </Tab>
             <Tab eventKey="json" title="JSON">
                 <BodyTab />

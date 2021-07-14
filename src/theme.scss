@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
 $theme-colors: (
   "primary": #3e2723,
   "secondary": #533d30,
@@ -8,13 +10,13 @@ $theme-colors: (
   "coffee": #3e2723,
   "milk-coffee": #533d30
 );
-$body-bg: #fff;
-$body-color: #333;
 
 @function theme-color($key: "primary") {
   @return map-get($theme-colors, $key);
 }
 
+$body-bg: #fff;
+$body-color: #333;
 $input-focus-border-color: theme-color("coffee");
 $input-focus-box-shadow: 0 0 0 0.25rem rgba(theme-color("milk-coffee"), 0.85);
 $form-select-focus-border-color: theme-color("coffee");
@@ -26,4 +28,9 @@ $nav-link-hover-color: theme-color("coffee");
 
 .nav-item[aria-selected="false"] {
   font-weight: 600;
+}
+
+.navbar-brand {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
 }

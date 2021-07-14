@@ -2,6 +2,7 @@
 import React, { Component, Fragment } from 'react'
 import TopBar from './TopBar'
 import Formular from './Formular'
+import Response from './Response'
 `
 
 class App extends Component
@@ -9,7 +10,8 @@ class App extends Component
         <Fragment>
             <TopBar />
             <div className="p-4">
-                <Formular />
+                <Formular handleSubmit={@handleSubmit} />
+                <Response />
             </div>
         </Fragment>
 
