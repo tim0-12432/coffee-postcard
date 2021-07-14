@@ -1,0 +1,29 @@
+$theme-colors: (
+  "primary": #3e2723,
+  "secondary": #533d30,
+  "info": #533d30,
+  "success": #8aec7d,
+  "warning": #f5eb63,
+  "danger": #ff6262,
+  "coffee": #3e2723,
+  "milk-coffee": #533d30
+);
+$body-bg: #fff;
+$body-color: #333;
+
+@function theme-color($key: "primary") {
+  @return map-get($theme-colors, $key);
+}
+
+$input-focus-border-color: theme-color("coffee");
+$input-focus-box-shadow: 0 0 0 0.25rem rgba(theme-color("milk-coffee"), 0.85);
+$form-select-focus-border-color: theme-color("coffee");
+$form-select-focus-box-shadow: 0 0 0 0.25rem rgba(theme-color("milk-coffee"), 0.85);
+$nav-link-color: theme-color("milk-coffee");
+$nav-link-hover-color: theme-color("coffee");
+
+@import '~bootstrap/scss/bootstrap.scss';
+
+.nav-item[aria-selected="false"] {
+  font-weight: 600;
+}
