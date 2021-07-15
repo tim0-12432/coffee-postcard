@@ -4,3 +4,6 @@
 
 Just wanted to use CoffeeScript once in my life.
 Probably never again!...
+
+![](src/resources/coffee-post-card.svg)
+

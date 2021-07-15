@@ -16,8 +16,8 @@ class HeadersTab extends Component
                             fields={@props.headers}
                             index={index}
                             key={"#{index}-header-key-value"}
-                            handleChange={if @props.editable then @props.handleChangeHeaders else () => {}}
-                            handleRemove={if @props.editable then @props.handleRemoveHeaders else () => {}}
+                            handleChange={if @props.editable then @props.handleChangeHeaders else () -> {}}
+                            handleRemove={if @props.editable then @props.handleRemoveHeaders else () -> {}}
                             removable={@props.editable}
                         /> for index in intervall
                     }
