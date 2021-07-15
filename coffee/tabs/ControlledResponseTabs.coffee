@@ -21,6 +21,7 @@ class ControlledResponseTabs extends Component
         >
             <Tab eventKey="json" title="JSON">
                 <BodyTab
+                    body={JSON.stringify(@props.body, null, 2)}
                     editable={false}
                 />
             </Tab>

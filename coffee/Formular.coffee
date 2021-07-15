@@ -51,8 +51,7 @@ class Formular extends Component
 
     handleSubmit: (event) ->
         event.preventDefault()
-        res = await request(@state.url, @state.method, @state.params, @state.headers)
-        console.log(res)
+        res = await request(@state.url, @state.method, @state.params, @state.headers, @state.body)
         @props.handleChangeResponse(res)
 
     handleChangeParams: (key, value, index) ->

@@ -2,6 +2,7 @@
 import React, { Component, Fragment } from 'react'
 import Card from 'react-bootstrap/Card'
 import ControlledResponseTabs from './tabs/ControlledResponseTabs'
+import { numToBytes, getPackageSize } from './additional/Conversion'
 `
 
 class Response extends Component
@@ -23,16 +24,17 @@ class Response extends Component
                                     Status: {response.status}
                                 </div>
                                 <div className="me-3">
-                                    Time:
+                                    Time: {response.customData?.time}ms
                                 </div>
                                 <div className="me-3">
-                                    Size:
+                                    Size: {numToBytes(getPackageSize(response))}
                                 </div>
                             </div>
                         </Card.Body>
                     </Card>
                     <ControlledResponseTabs
                         headers={headers}
+                        body={response.data}
                     />
                 </Fragment>
                 else null

@@ -1,27 +1,41 @@
 `
 import axios from 'axios'
+import { errorAlert } from './../additional/Popups'
 `
 
-# axios.interceptors.request.use((req) -> 
-#     req.customData = req.customData || {}
-#     req.customData.startTime = new Date().getTime()
-#     return req
-# )
+axios.interceptors.request.use((req) ->
+    req.customData = req.customData || {}
+    req.customData.startTime = new Date().getTime()
+    return req
+)
 
-# axios.interceptors.response.use((updateEndTime, e) ->
-#     Promise.reject(updateEndTime(e.response))
-# )
+updateEndTime = (response) ->
+    response.customData = response.customData || {}
+    response.customData.time = new Date().getTime() - response.config.customData.startTime
+    return response
 
-# updateEndTime: (e) ->
-#     console.log(e)
+axios.interceptors.response.use(
+    (r) -> updateEndTime(r)
+    (e) ->
+        Promise.reject(updateEndTime(e.response))
+)
 
-export request = (url, method, params, headers) ->
+export request = (url, method, params, headers, body) ->
+    data = null
+    try
+        data = JSON.parse(body || null)
+    catch e
+        errorAlert("Body is malformed!")
+        return
     axios({
         url: url,
         method: method,
         params: keyValuePairsToObject(params),
-        headers: keyValuePairsToObject(headers)
-    }).catch((e) => e.response).then((response) ->
+        headers: keyValuePairsToObject(headers),
+        data
+    })
+    .catch((e) -> e)
+    .then((response) ->
         return response
     )
 
