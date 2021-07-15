@@ -26,12 +26,16 @@ class DataKeyValueTemplate extends Component
                         e.target.value,
                         @props.index)}
                 />
-                <Button
-                    variant="outline-danger"
-                    onClick={() => @props.handleRemove(@props.index)}
-                >
-                    Remove
-                </Button>
+                {
+                    if @props.removable
+                    then <Button
+                        variant="outline-danger"
+                        onClick={() => @props.handleRemove(@props.index)}
+                    >
+                        Remove
+                    </Button>
+                    else null
+                }
             </InputGroup>
 
 export default DataKeyValueTemplate

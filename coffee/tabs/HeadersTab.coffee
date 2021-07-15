@@ -7,7 +7,8 @@ import DataKeyValueTemplate from './templates/DataKeyValueTemplate'
 
 class HeadersTab extends Component
     render: ->
-        <TabContent className="p-3 border-top-0 border">
+        intervall = if @props.editable then [0..@props.headers.length] else [0..@props.headers.length - 1]
+        return <TabContent className="p-3 border-top-0 border">
             <TabPane className="fade show active">
                 <div>
                     {
@@ -15,9 +16,10 @@ class HeadersTab extends Component
                             fields={@props.headers}
                             index={index}
                             key={"#{index}-header-key-value"}
-                            handleChange={@props.handleChangeHeaders}
-                            handleRemove={@props.handleRemoveHeaders}
-                        /> for index in [0..@props.headers.length]
+                            handleChange={if @props.editable then @props.handleChangeHeaders else () => {}}
+                            handleRemove={if @props.editable then @props.handleRemoveHeaders else () => {}}
+                            removable={@props.editable}
+                        /> for index in intervall
                     }
                 </div>
             </TabPane>

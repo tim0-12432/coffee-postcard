@@ -2,12 +2,12 @@
 import React, { Component } from 'react'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
-import QueryTab from './tabs/QueryTab'
-import HeadersTab from './tabs/HeadersTab'
-import BodyTab from './tabs/BodyTab'
+import QueryTab from './QueryTab'
+import HeadersTab from './HeadersTab'
+import BodyTab from './BodyTab'
 `
 
-class ControlledTabs extends Component
+class ControlledRequestTabs extends Component
     constructor: (props) ->
         super props
         @state =
@@ -31,11 +31,16 @@ class ControlledTabs extends Component
                     headers={@props.headers}
                     handleChangeHeaders={@props.handleChangeHeaders}
                     handleRemoveHeaders={@props.handleRemoveHeaders}
+                    editable={true}
                 />
             </Tab>
             <Tab eventKey="json" title="JSON">
-                <BodyTab />
+                <BodyTab
+                    body={@props.body}
+                    handleChangeBody={@props.handleChangeBody}
+                    editable={true}
+                />
             </Tab>
         </Tabs>
 
-export default ControlledTabs
+export default ControlledRequestTabs

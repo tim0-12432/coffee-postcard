@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
-import ControlledTabs from './ControlledTabs'
+import ControlledRequestTabs from './tabs/ControlledRequestTabs'
 import { infoAlert } from './additional/Popups'
 import { request } from './request/Request'
 `
@@ -32,7 +32,8 @@ class Formular extends Component
             url: "",
             method: "GET",
             params: [],
-            headers: defaultHeaders
+            headers: defaultHeaders,
+            body: ""
         @handleChangeUrl = @handleChangeUrl.bind(@)
         @handleChangeMethod = @handleChangeMethod.bind(@)
         @handleSubmit = @handleSubmit.bind(@)
@@ -40,6 +41,7 @@ class Formular extends Component
         @handleRemoveParams = @handleRemoveParams.bind(@)
         @handleChangeHeaders = @handleChangeHeaders.bind(@)
         @handleRemoveHeaders = @handleRemoveHeaders.bind(@)
+        @handleChangeBody = @handleChangeBody.bind(@)
 
     handleChangeUrl: (e) ->
         @setState(url: e.target.value)
@@ -47,9 +49,11 @@ class Formular extends Component
     handleChangeMethod: (e) ->
         @setState(method: e.target.value)
 
-    handleSubmit: () ->
-        res = request(@state.url, @state.method, @state.params, @state.headers)
+    handleSubmit: (event) ->
+        event.preventDefault()
+        res = await request(@state.url, @state.method, @state.params, @state.headers)
         console.log(res)
+        @props.handleChangeResponse(res)
 
     handleChangeParams: (key, value, index) ->
         current = @state.params
@@ -74,6 +78,9 @@ class Formular extends Component
             current.splice(index, 1)
             @setState(headers: current)
             infoAlert("Removing item from headers successful!")
+
+    handleChangeBody: (value) ->
+        @setState(body: value)
 
     render: ->
         <form onSubmit=(@handleSubmit)>
@@ -106,13 +113,15 @@ class Formular extends Component
                     Send
                 </Button>
             </InputGroup>
-            <ControlledTabs
+            <ControlledRequestTabs
                 params={@state.params}
                 handleChangeParams={@handleChangeParams}
                 handleRemoveParams={@handleRemoveParams}
                 headers={@state.headers}
                 handleChangeHeaders={@handleChangeHeaders}
                 handleRemoveHeaders={@handleRemoveHeaders}
+                body={@state.body}
+                handleChangeBody={@handleChangeBody}
             />
         </form>
 
