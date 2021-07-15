@@ -7,6 +7,7 @@ require("@electron/remote/main").initialize();
 
 function createWindow() {
     const win = new BrowserWindow({
+        autoHideMenuBar: true,
         width: 1080,
         height: 720,
         icon: path.join(__dirname, "/images/favicon.ico"),
