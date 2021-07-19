@@ -1,6 +1,8 @@
 {
-    "extension": ["coffee"],
+    "extension": ["js"],
     "package": "./package.json",
     "reporter": "spec",
-    "require": "coffeescript/register"
+    "require": [
+        "@babel/register"
+    ]
 }

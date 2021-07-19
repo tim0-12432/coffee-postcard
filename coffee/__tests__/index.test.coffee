@@ -1,5 +1,7 @@
-require("coffee-script")
-assert = require('assert')
+`
+import assert from 'assert'
+import moxios from 'moxios'
+`
 
 describe 'Array', ->
     describe '#indexOf()', ->

@@ -13,12 +13,14 @@ alert = (type, message) ->
 export errorAlert = (message = "Error!") ->
     ReactDOM.render alert("danger", message), anchor
     setTimeout(() ->
-        ReactDOM.unmountComponentAtNode anchor
-    , amount)
+        ReactDOM.unmountComponentAtNode anchor,
+        amount
+    )
 
 export infoAlert = (message = "Successful!") ->
     ReactDOM.render alert("primary", message), anchor
     setTimeout(() ->
-        ReactDOM.unmountComponentAtNode anchor
-    , amount)
+        ReactDOM.unmountComponentAtNode anchor,
+        amount
+    )
 
