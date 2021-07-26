@@ -24,6 +24,7 @@ class ControlledRequestTabs extends Component
                     params={@props.params}
                     handleChangeParams={@props.handleChangeParams}
                     handleRemoveParams={@props.handleRemoveParams}
+                    editable={true}
                 />
             </Tab>
             <Tab eventKey="headers" title="Headers">

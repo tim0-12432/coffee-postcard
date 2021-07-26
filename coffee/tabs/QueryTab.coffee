@@ -17,6 +17,7 @@ class QueryTab extends Component
                             key={"#{index}-header-key-value"}
                             handleChange={@props.handleChangeParams}
                             handleRemove={@props.handleRemoveParams}
+                            removable={@props.editable}
                         /> for index in [0..@props.params.length]
                     }
                 </div>
